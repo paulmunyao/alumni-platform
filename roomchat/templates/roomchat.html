@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%load bootstrap3%}
+{%block content%}
+
+<a href="{%url 'new_chat' cohorts.id %}?next={{ request.path}}" class="btn btn-primary" style="margin-left: 150px;">ADD POST</a>
+<div class="container">
+    <div class="row">
+      {%if cohorts.group.all%}
+      {%for post in cohorts.group.all%}
+      <div class="card">
+        <h5 class="card-header" style="text-align: center; background-color: aqua;">POST</h5>
+        <!-- <div class="card-body">
+          <h5 class="card-title">{{post.title|title}}</h5>
+          <p class="card-text">{{post.post}}</p>
+        </div> -->
+      </div>    
+      {%endfor%}
+      {%endif%}
+    </div>
+  </div>
+
+{%endblock%}
