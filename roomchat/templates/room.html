@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%load bootstrap3%}
+{%block content%}
+
+<div class="container">
+    {%for room in rooms%}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{room.logo.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{room.name}}</h5>
+            </div>
+          </div>
+        </div>
+        <a href="/my_group/{{room.id}}" class="btn btn-outline-warning font-weight-bold btn-sm mb-2">JOIN HOOD</a> 
+      </div>
+      {%endfor%}
+</div>
+{%endblock%}
