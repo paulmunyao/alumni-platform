@@ -5,6 +5,7 @@ from .models import Profile
 from .forms import ProfileForm
 
 # Create your views here.
+@login_required(login_url='/accounts/register/')
 def index(request):
     return render(request,'home.html')
 
@@ -20,16 +21,18 @@ def profile_update(request):
                 print('profile exist')
                 username = current_user
                 useremail=form.cleaned_data['useremail']
+                bio=form.cleaned_data['bio']
                
-                userage=form.cleaned_data['userage']
-                profile_image=form.cleaned_data['profile_image']
-                AuthenticationError=form.cleaned_data['AuthenticationError']
-                Profile.objects.filter(username=current_user).update(useremail=useremail, userage=userage,profile_image=profile_image,AuthenticationError=AuthenticationError)
+                profile_pic=form.cleaned_data['profile_pic']
+                # AuthenticationError=form.cleaned_data['AuthenticationError']
+                Profile.objects.filter(username=current_user).update(useremail=useremail, profile_pic=profile_pic,bio=bio)
+                print('updated')
             else:
                 print('profile does not exist')
                 profile=form.save(commit=False)
                 profile.username= current_user
                 profile.save()
+                print('profile updated')
 
             message='saved successfuly'
             # profile_display(request)
@@ -47,4 +50,4 @@ def profile_display(request):
     profile= Profile.objects.filter(username_id=request.user.id)
    
 
-    return render(request, 'profile.html',{"profiles":profile})
+    return render(request, 'profile.html',{"profile":profile})
