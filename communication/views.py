@@ -113,6 +113,7 @@ def get_routes(request):
 
     return Response(routes)
 
+#getting an item
 @api_view(['GET'])
 def get_profiles(request):
     profiles = Profile.objects.all()
@@ -137,6 +138,7 @@ def get_comments(request):
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
+#getting a single item
 @api_view(['GET'])
 def get_profile(request, pk):
     profile = Profile.objects.get(pk=pk)
@@ -161,6 +163,7 @@ def get_comment(request, pk):
     serializer = CommentSerializer(comment)
     return Response(serializer.data)
 
+#deleting a single item
 @api_view(['DELETE'])
 def delete_profile(request, pk):
     profile = Profile.objects.get(pk=pk)
@@ -185,6 +188,7 @@ def delete_comment(request, pk):
     comment.delete()
     return Response('Comment deleted successfully!')
 
+#Updating an item
 @api_view(['PUT'])
 def update_profile(request, pk):
     data = request.data
@@ -203,4 +207,54 @@ def update_post(request, pk):
         serializer.save()
         return Response(serializer.data)
 
+@api_view(['PUT'])
+def update_group(request, pk):
+    data = request.data
+    group = Group.objects.get(pk=pk)
+    serializer = GroupSerializer(instance=group, data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+
+@api_view(['PUT'])
+def update_comment(request, pk):
+    data = request.data
+    comment = Comment.objects.get(pk=pk)
+    serializer = CommentSerializer(instance=comment, data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+        
+# POST is used to create a new item
+@api_view(['POST'])  
+def create_post(request):
+    data = request.data
+    serializer = PostSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data) 
+
+@api_view(['POST'])
+def create_group(request):
+    data = request.data
+    serializer = GroupSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+
+@api_view(['POST'])
+def create_comment(request):
+    data = request.data
+    serializer = CommentSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+
+@api_view(['POST'])
+def create_comment(request):
+    data = request.data
+    serializer = CommentSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
 
