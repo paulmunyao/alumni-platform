@@ -113,4 +113,94 @@ def get_routes(request):
 
     return Response(routes)
 
-# @api_view(['GET'])
+@api_view(['GET'])
+def get_profiles(request):
+    profiles = Profile.objects.all()
+    serializer = ProfileSerializer(profiles, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_posts(request):
+    posts = Post.objects.all()
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_groups(request):
+    groups = Group.objects.all()
+    serializer = GroupSerializer(groups, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_comments(request):
+    comments = Comment.objects.all()
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_profile(request, pk):
+    profile = Profile.objects.get(pk=pk)
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    serializer = PostSerializer(post)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_group(request, pk):
+    group = Group.objects.get(pk=pk)
+    serializer = GroupSerializer(group)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_comment(request, pk):
+    comment = Comment.objects.get(pk=pk)
+    serializer = CommentSerializer(comment)
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def delete_profile(request, pk):
+    profile = Profile.objects.get(pk=pk)
+    profile.delete()
+    return Response('Profile deleted successfully!')
+
+@api_view(['DELETE'])
+def delete_post(request, pk):
+    post = Post.objects.get(pk=pk)
+    post.delete()
+    return Response('Post deleted successfully!')
+
+@api_view(['DELETE'])
+def delete_group(request, pk):
+    group = Group.objects.get(pk=pk)
+    group.delete()
+    return Response('Group deleted successfully!')
+
+@api_view(['DELETE'])
+def delete_comment(request, pk):
+    comment = Comment.objects.get(pk=pk)
+    comment.delete()
+    return Response('Comment deleted successfully!')
+
+@api_view(['PUT'])
+def update_profile(request, pk):
+    data = request.data
+    profile = Profile.objects.get(pk=pk)
+    serializer = ProfileSerializer(instance=profile, data=data)   # instance=profile is used to update the instance
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+
+@api_view(['PUT'])
+def update_post(request, pk):
+    data = request.data
+    post = Post.objects.get(pk=pk)
+    serializer = PostSerializer(instance=post, data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+
+
