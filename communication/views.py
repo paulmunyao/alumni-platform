@@ -7,7 +7,7 @@ from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, Com
 # Create your views here.
 
 @api_view(['GET'])
-def get_routes(request):
+def getRoutes(request):
 
     routes = [
         # creating endpoints for getting all the items
@@ -25,6 +25,7 @@ def get_routes(request):
         'method': 'GET',
         'body': 'None',
         'description': 'Get all groups'},
+        #    print('groups')
 
         {'Endpoint': '/comments/',
         'method': 'GET',
@@ -257,4 +258,6 @@ def create_comment(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+
+
 
