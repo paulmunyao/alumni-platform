@@ -22,7 +22,7 @@ class Post(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True)
-    members = models.ManyToManyField(User, related_name='groups')
+    members = models.ManyToManyField(User, related_name='members')
     def __str__(self):
         return self.name 
 
