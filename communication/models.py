@@ -13,15 +13,16 @@ class Profile(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
     message = models.TextField(max_length=500, blank=True)
+    updated = models.DateTimeField(auto_now=True)   
+    timestamp = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.user.username   
 
 class Group(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True)
-    members = models.ManyToManyField(User, related_name='groups')
+    members = models.ManyToManyField(User, related_name='members')
     def __str__(self):
         return self.name 
 
@@ -29,7 +30,9 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     message = models.TextField(max_length=500, blank=True)
+    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.user.username
         
-                            
+                        
