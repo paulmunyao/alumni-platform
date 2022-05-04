@@ -15,5 +15,11 @@ urlpatterns = [
     path('posts/<int:pk>/delete/', views.delete_post, name="delete_post"),
     path('groups/<int:pk>/delete/', views.delete_group, name="delete_group"),
     path('comments/<int:pk>/delete/', views.delete_comment, name="delete_comment"),
-     
+    path('profiles/<int:pk>/edit/', views.update_profile, name="update_profile"),
+    path('posts/<int:pk>/edit/', views.update_post, name="update_post"),
+    path('groups/<int:pk>/edit/', views.update_group, name="update_group"),
+    path('comments/<int:pk>/edit/', views.update_comment, name="update_comment"),
+    path('posts/new/', views.create_post, name="create_post"),
+    path('groups/new/', views.create_group, name="create_group"),
+    path('comments/new/', views.create_comment, name="create_comment"),  
 ]
