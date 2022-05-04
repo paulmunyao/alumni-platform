@@ -10,6 +10,7 @@ from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, Com
 def get_profiles(request):
 
     routes = [
+        # creating endpoints for getting all the items
         {'Endpoint': '/profiles/', 
         'method': 'GET', 
         'body': 'None',
@@ -30,6 +31,7 @@ def get_profiles(request):
         'body': 'None',
         'description': 'Get all comments'},
 
+        # Endpoints for getting a single item
         {'Endpoint': '/profiles/<int:pk>/',
         'method': 'GET',
         'body': 'None',
@@ -50,6 +52,7 @@ def get_profiles(request):
         'body': 'None',
         'description': 'Get a comment'},
 
+        # Endpoints for deleting a single item
         {'Endpoint': '/profiles/<int:pk>/delete/',
         'method': 'DELETE',
         'body': 'None',
@@ -70,6 +73,7 @@ def get_profiles(request):
         'body': 'None',
         'description': 'Delete a comment'},
 
+        # Endpoints for updating a single item
         {'Endpoint': '/profiles/<int:pk>/update/',
         'method': 'PUT',
         'body': 'ProfileSerializer',
@@ -90,6 +94,7 @@ def get_profiles(request):
         'body': 'CommentSerializer',
         'description': 'Update a comment'},
 
+        # Endpoints for creating a single item
         {'Endpoint': '/posts/<int:pk>/create/',
         'method': 'POST',
         'body': 'PostSerializer',
