@@ -29,4 +29,49 @@ def get_profiles(request):
         'method': 'GET',
         'body': 'None',
         'description': 'Get all comments'},
+
+        {'Endpoint': '/profiles/<int:pk>/',
+        'method': 'GET',
+        'body': 'None',
+        'description': 'Get a profile'},
+
+        {'Endpoint': '/posts/<int:pk>/',
+        'method': 'GET',
+        'body': 'None',
+        'description': 'Get a post'},
+
+        {'Endpoint': '/groups/<int:pk>/',
+        'method': 'GET',
+        'body': 'None',
+        'description': 'Get a group'},
+
+        {'Endpoint': '/comments/<int:pk>/',
+        'method': 'GET',
+        'body': 'None',
+        'description': 'Get a comment'},
+
+        {'Endpoint': '/profiles/<int:pk>/delete/',
+        'method': 'DELETE',
+        'body': 'None',
+        'description': 'Delete a profile'},
+
+        {'Endpoint': '/posts/<int:pk>/delete/',
+        'method': 'DELETE',
+        'body': 'None',
+        'description': 'Delete a post'},
+
+        {'Endpoint': '/groups/<int:pk>/delete/',
+        'method': 'DELETE',
+        'body': 'None',
+        'description': 'Delete a group'},
+
+        {'Endpoint': '/comments/<int:pk>/delete/',
+        'method': 'DELETE',
+        'body': 'None',
+        'description': 'Delete a comment'},
+
+        {'Endpoint': '/profiles/<int:pk>/update/',
+        'method': 'PUT',
+        'body': 'ProfileSerializer',
+        'description': 'Update a profile'},
     ]
