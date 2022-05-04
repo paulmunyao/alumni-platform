@@ -74,4 +74,36 @@ def get_profiles(request):
         'method': 'PUT',
         'body': 'ProfileSerializer',
         'description': 'Update a profile'},
+
+        {'Endpoint': '/posts/<int:pk>/update/',
+        'method': 'PUT',
+        'body': 'PostSerializer',
+        'description': 'Update a post'},
+
+        {'Endpoint': '/groups/<int:pk>/update/',
+        'method': 'PUT',
+        'body': 'GroupSerializer',
+        'description': 'Update a group'},
+
+        {'Endpoint': '/comments/<int:pk>/update/',
+        'method': 'PUT',
+        'body': 'CommentSerializer',
+        'description': 'Update a comment'},
+
+        {'Endpoint': '/posts/<int:pk>/create/',
+        'method': 'POST',
+        'body': 'PostSerializer',
+        'description': 'Create a post'},
+
+        {'Endpoint': '/groups/<int:pk>/create/',
+        'method': 'POST',
+        'body': 'GroupSerializer',
+        'description': 'Create a group'},
+
+        {'Endpoint': '/comments/<int:pk>/create/',
+        'method': 'POST',
+        'body': 'CommentSerializer',
+        'description': 'Create a comment'},
     ]
+
+    return Response(routes)
