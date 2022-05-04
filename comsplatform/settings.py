@@ -15,7 +15,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
-
+from decouple import config, Csv
 
 cloudinary.config(
     CLOUD_NAME = config('CLOUD_NAME'),
