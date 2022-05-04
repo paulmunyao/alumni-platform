@@ -7,7 +7,7 @@ from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, Com
 # Create your views here.
 
 @api_view(['GET'])
-def get_Routes(request):
+def get_routes(request):
 
     routes = [
         # creating endpoints for getting all the items
