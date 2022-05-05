@@ -14,6 +14,7 @@ class Room(models.Model):
 class Roomchat(models.Model):
      text = models.TextField()
      room = models.ForeignKey(Room,on_delete=models.CASCADE,blank=True,related_name='group')
-     author = models.ForeignKey(Profile,on_delete=models.CASCADE,blank=True)
+    #  author = models.ForeignKey(Profile,on_delete=models.CASCADE,blank=True)
+     author=models.CharField(max_length=50)
      date = models.DateTimeField(default=datetime.now, blank=True)
 
