@@ -50,11 +50,12 @@ def new_chat(request,id):
     if request.method == 'POST':
         chat_form = NewChatForm(request.POST,request.FILES)
         if chat_form.is_valid():
-            chat_form.instance.user = request.user
+            # chat_form.instance.user = request.user
             chat_form.author = Room.objects.filter(id=id)
             chat_form.save(commit=False)
             chat_form.author=current_user
             print(current_user)
+            print(chat_form)
             chat_form.save()
             # next=request.GET.get('next', reverse('group'))
 
