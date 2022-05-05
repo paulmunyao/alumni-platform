@@ -2,7 +2,7 @@ from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
-from communication.models import Profile
+# from communication.models import Profile
 
 # Create your models here.
 class Room(models.Model):

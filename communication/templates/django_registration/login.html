@@ -1,0 +1,53 @@
+{%extends "django_registration/base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sign in</title>
+</head>
+<body id="bg" style="background-image:url('/static/image/bg3.jpg'); background-size:cover;background-color: black;"><br><br><br><br><br>
+  <div class="container" >
+    <div class="row" >
+      <!-- Empty div -->
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        {% if form.errors %}
+          <p> Password or Username is incorrect </p>
+        {% endif %}
+        <div class="panel panel-default" style="opacity: 0.8;font-size: large; font-weight:bolder;">
+  
+          <div class="panel-heading">
+            <h3 class="text-center">Sign In</h3>
+          </div>
+          <div class="panel-body" style="background-color:black; ">
+  
+            <form  action="/accounts/login/" method="post">
+              {% csrf_token %}
+              {% bootstrap_form form%}
+  
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-lg" value="Login">
+              </div>
+  
+              <input type="hidden" name="next" value="{{next}}" >
+  
+            </form>
+            <p><strong> Don't have an account?<a href="/accounts/register/">  sign Up</a></strong></p>
+          </div>
+  
+        </div>
+  
+      </div>
+      <!-- empty div -->
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+  
+  {% endblock %}
+  
+</body>
+</html>

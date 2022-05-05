@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%load bootstrap3%}
+{%block content%}
+
+<div class="container">
+    <div class="row">
+       {%for profile in profile%}
+        <div class="col-md-4">
+            <img src="{{profile.profile_pic.url}}" alt="" height="150px" width="150px">
+        </div>
+        <div class="col-md-4">
+            {{profile.username}}
+            {{profile.bio}}
+        </div>
+        {%endfor%}
+    </div>
+</div>
+<a class="btn btn-warning" href="/update_profile">Edit Profile</a>
+
+
+{%endblock%}
