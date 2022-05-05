@@ -1,3 +1,1 @@
-
-  
-web: gunicorn comsplatform.wsgi
+ web: gunicorn comsplatform.wsgi

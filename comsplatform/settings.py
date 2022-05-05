@@ -20,9 +20,9 @@ import dj_database_url
 from decouple import config, Csv
 
 cloudinary.config(
-    CLOUD_NAME=config('CLOUD_NAME'),
-    API_KEY=config('API_KEY'),
-    API_SECRET=config('API_SECRET')
+    CLOUD_NAME=('cloud_name'),
+    API_KEY=('api_key'),
+    API_SECRET=('api_secret')
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
