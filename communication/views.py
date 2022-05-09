@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from rest_framework import generics, permissions
+from knox.models import AuthToken
+from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, CommentSerializer, UserSerializer, RegisterSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Profile, Post, Group, Comment
-from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, CommentSerializer
+
 
 # Create your views here.
 @api_view(['GET'])
@@ -282,3 +285,6 @@ def create_comment(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+
+
+#Registering the API
