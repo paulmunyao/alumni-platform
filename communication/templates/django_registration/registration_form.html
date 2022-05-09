@@ -1,0 +1,25 @@
+{% extends "django_registration/base.html"%}
+{%load bootstrap3%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body mb-2 mr-3 ml-3">
+                    <h6 class="text-center text-muted intro">Sign In for the Neighbourhood App</h6>
+                    <form action="" method="post" novalidate>
+                        {% csrf_token%}
+                        {{ form|crispy}}
+                        <button type="submit" class="btn btn-primary btn-sm login"> Sign up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+{% endblock %}

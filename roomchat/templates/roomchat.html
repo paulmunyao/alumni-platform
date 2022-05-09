@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%load bootstrap3%}
+{%block content%}
+
+
+<div class="container">
+    <div class="row">
+      {%if cohorts.group.all%}
+      <h5 class="card-header" style="text-align: center; background-color: aqua;">{{post.name}}</h5>
+      {%for post in cohorts.group.all%}
+      <div class="card">
+        <!-- <h5 class="card-header" style="text-align: center; background-color: aqua;">POST</h5> -->
+      {{post.author}} : {{post.text}}
+      </div>    
+      <!-- <a href="{%url 'new_chat' cohorts.id %}?next={{ request.path}}" class="btn btn-primary">NEW MESSAGE</a> -->
+      {%endfor%}
+      <!-- <a href="{%url 'new_chat' cohorts.id %}?next={{ request.path}}" class="btn btn-primary">NEW MESSAGE</a> -->
+      {%endif%}
+      <a href="{%url 'new_chat' cohorts.id %}?next={{request.path}}" class="btn btn-primary">NEW MESSAGE</a>
+    </div>
+  </div>
+
+{%endblock%}

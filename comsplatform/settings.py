@@ -50,7 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'bootstrap3',
     'communication',
+    'roomchat',
+    'fundraiser',
     'cloudinary',
     'rest_framework',
     'corsheaders',
@@ -184,3 +188,5 @@ django_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
