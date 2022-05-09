@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'communication',
     'cloudinary',
     'rest_framework',
+    'knox',
     'corsheaders',
 ]
 
