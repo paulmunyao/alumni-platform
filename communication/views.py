@@ -5,8 +5,6 @@ from .models import Profile, Post, Group, Comment
 from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, CommentSerializer
 
 # Create your views here.
-
-
 @api_view(['GET'])
 def getRoutes(request):
 
@@ -116,7 +114,6 @@ def getRoutes(request):
     return Response(routes)
 
 # getting an item
-
 
 @api_view(['GET'])
 def get_profiles(request):
