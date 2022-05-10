@@ -12,68 +12,75 @@ from .models import Profile, Post, Group, Comment
 def getRoutes(request):
 
     routes = [
+        #Endpoint for registering a new user
+        {'endpoint':'api/signup/',
+         'method':'POST',
+         'body':{'username':'username', 'email':'email', 'password':'password'},
+         'description':'Register a new user'},
+
+
         # creating endpoints for getting all the items
         {'Endpoint': 'api/profiles/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get all profiles'},
 
         {'Endpoint': 'api/posts/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get all posts'},
 
         {'Endpoint': 'api/groups/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get all groups'},
         #    print('groups')
 
         {'Endpoint': 'api/comments/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get all comments'},
 
         # Endpoints for getting a single item
         {'Endpoint': 'api/profiles/<int:pk>/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get a profile'},
 
         {'Endpoint': 'api/posts/<int:pk>/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get a post'},
 
         {'Endpoint': 'api/groups/<int:pk>/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get a group'},
 
         {'Endpoint': 'api/comments/<int:pk>/',
          'method': 'GET',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Get a comment'},
 
         # Endpoints for deleting a single item
         {'Endpoint': 'api/profiles/<int:pk>/delete/',
          'method': 'DELETE',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Delete a profile'},
 
         {'Endpoint': 'api/posts/<int:pk>/delete/',
          'method': 'DELETE',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Delete a post'},
 
         {'Endpoint': 'api/groups/<int:pk>/delete/',
          'method': 'DELETE',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Delete a group'},
 
         {'Endpoint': 'api/comments/<int:pk>/delete/',
          'method': 'DELETE',
-         'body': 'None',
+         'body': {'write_only': 'True'},
          'description': 'Delete a comment'},
 
         # Endpoints for updating a single item
