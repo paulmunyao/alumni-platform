@@ -1,8 +1,11 @@
 from django.urls import path
 from . import views
+from .views import RegisterAPI
+
 
 urlpatterns = [
     path('', views.getRoutes, name="routes"),
+    path('api/register/', RegisterAPI.as_view(), name='register'),
     path('api/profiles/', views.get_profiles, name="profiles"),
     path('api/posts/', views.get_posts, name="posts"),
     path('api/groups/', views.get_groups, name="groups"),
