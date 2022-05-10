@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.getRoutes, name="routes"),
     path('api/login/', LoginAPI.as_view(),name="login"),
     path('api/signup/', RegisterAPI.as_view(), name='signup'),
+    path('api/search/', views.search, name="search"),
     path('api/logout', knox_views.LogoutView.as_view, name='logout'),
     path('api/profiles/', views.get_profiles, name="profiles"),
     path('api/posts/', views.get_posts, name="posts"),

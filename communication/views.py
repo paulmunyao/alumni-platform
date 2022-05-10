@@ -2,29 +2,38 @@ from django.shortcuts import render
 from django.contrib.auth import login
 from rest_framework import generics, permissions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
-from knox.views import LoginView as KnoxLoginView 
+from knox.views import LoginView as KnoxLoginView
 from knox.models import AuthToken
 from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, CommentSerializer, UserSerializer, RegisterSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Profile, Post, Group, Comment 
+from .models import Profile, Post, Group, Comment
 from django.db.models import Q
+from .models import User,Profile,Group
 
 # Create your views here.
+
+
 @api_view(['GET'])
 def getRoutes(request):
 
     routes = [
-        #Endpoint for registering a new user
-        {'endpoint':'api/signup/',
-         'method':'POST',
-         'body':{'username':'username', 'email':'email', 'password':'password'},
-         'description':'Register a new user'},
-        #Endpoint for logging in a user
-        {'endpoint':'api/login/',
-         'method':'POST',
-         'body':{'username':'username', 'password':'password'},
-         'description':'Login a user'},
+        # Endpoint for registering a new user
+        {'endpoint': 'api/signup/',
+         'method': 'POST',
+         'body': {'username': 'username', 'email': 'email', 'password': 'password'},
+         'description': 'Register a new user'},
+        # Endpoint for logging in a user
+        {'endpoint': 'api/login/',
+         'method': 'POST',
+         'body': {'username': 'username', 'password': 'password'},
+         'description': 'Login a user'},
+
+        # Endpoint for searching items in the databases
+        {'endpoint': 'api/search/',
+         'method': 'GET',
+         'body': {'search': 'search'},
+         'description': 'Search for items in the databases'},
 
 
         # creating endpoints for getting all the items
@@ -132,6 +141,8 @@ def getRoutes(request):
     return Response(routes)
 
 # getting an item
+
+
 @api_view(['GET'])
 def get_profiles(request):
     profiles = Profile.objects.all()
@@ -301,17 +312,19 @@ def create_comment(request):
         return Response(serializer.data)
 
 
-#Implementing search functionality
+# Implementing search functionality
 @api_view(['POST'])
 def search(request):
-    if 'q' in request.POST:
-        q = request.POST['q']
-        multiple_q = Q(Q(username__icontains=q) | Q(group__name__icontains=q))
-        serializer = ProfileSerializer(multiple_q, many=True)
+    if request.data['q']:
+        q = request.data['q']
+        results = User.objects.filter(
+            Q(username__icontains=q) | Q(email__icontains=q)
+        ).all()
+        serializer = UserSerializer(results, many=True)
         return Response(serializer.data)
     else:
-        return Response('No query provided')
-    
+        return Response('Please enter a search query')
+
 # Registering the API
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -334,4 +347,4 @@ class LoginAPI(KnoxLoginView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         login(request, user)
-        return super(LoginAPI,self).post(request, format=None)
+        return super(LoginAPI, self).post(request, format=None)
