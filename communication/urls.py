@@ -1,8 +1,14 @@
 from django.urls import path
 from . import views
+from .views import RegisterAPI,LoginAPI
+from knox import views as knox_views
+
 
 urlpatterns = [
     path('', views.getRoutes, name="routes"),
+    path('api/login', LoginAPI.as_view(),name="login"),
+    path('api/signup/', RegisterAPI.as_view(), name='signup'),
+    path('api/logout', knox_views.LogoutView.as_view, name='logout'),
     path('api/profiles/', views.get_profiles, name="profiles"),
     path('api/posts/', views.get_posts, name="posts"),
     path('api/groups/', views.get_groups, name="groups"),
