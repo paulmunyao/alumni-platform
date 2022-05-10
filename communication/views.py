@@ -118,6 +118,7 @@ def getRoutes(request):
 
 # getting an item
 
+
 @api_view(['GET'])
 def get_profiles(request):
     profiles = Profile.objects.all()
@@ -287,7 +288,7 @@ def create_comment(request):
         return Response(serializer.data)
 
 
-#Registering the API
+# Registering the API
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 
