@@ -132,8 +132,6 @@ def getRoutes(request):
     return Response(routes)
 
 # getting an item
-
-
 @api_view(['GET'])
 def get_profiles(request):
     profiles = Profile.objects.all()
@@ -303,6 +301,17 @@ def create_comment(request):
         return Response(serializer.data)
 
 
+#Implementing search functionality
+@api_view(['POST'])
+def search(request):
+    if 'q' in request.POST:
+        q = request.POST['q']
+        multiple_q = Q(Q(username__icontains=q) | Q(group__name__icontains=q))
+        serializer = ProfileSerializer(multiple_q, many=True)
+        return Response(serializer.data)
+    else:
+        return Response('No query provided')
+    
 # Registering the API
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
