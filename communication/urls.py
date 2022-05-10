@@ -6,7 +6,7 @@ from knox import views as knox_views
 
 urlpatterns = [
     path('', views.getRoutes, name="routes"),
-    path('api/login', LoginAPI.as_view(),name="login"),
+    path('api/login/', LoginAPI.as_view(),name="login"),
     path('api/signup/', RegisterAPI.as_view(), name='signup'),
     path('api/logout', knox_views.LogoutView.as_view, name='logout'),
     path('api/profiles/', views.get_profiles, name="profiles"),
