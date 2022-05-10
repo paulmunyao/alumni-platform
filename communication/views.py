@@ -7,8 +7,8 @@ from knox.models import AuthToken
 from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, CommentSerializer, UserSerializer, RegisterSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Profile, Post, Group, Comment
-
+from .models import Profile, Post, Group, Comment 
+from django.db.models import Q
 
 # Create your views here.
 @api_view(['GET'])
