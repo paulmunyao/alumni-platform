@@ -20,6 +20,11 @@ def getRoutes(request):
          'method':'POST',
          'body':{'username':'username', 'email':'email', 'password':'password'},
          'description':'Register a new user'},
+        #Endpoint for logging in a user
+        {'endpoint':'api/login/',
+         'method':'POST',
+         'body':{'username':'username', 'password':'password'},
+         'description':'Login a user'},
 
 
         # creating endpoints for getting all the items
