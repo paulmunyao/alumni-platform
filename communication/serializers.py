@@ -43,8 +43,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email')
 
 # Register Serializer
-
-
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
