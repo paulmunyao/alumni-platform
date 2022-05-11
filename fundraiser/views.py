@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from .models import Fundroom,fundchat
 from .forms import NewFundRoomForm,FundChatForm
-from channels 
 # Create your views here.
 def new_fund(request):
     current_user = request.user
