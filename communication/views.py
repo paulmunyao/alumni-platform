@@ -321,9 +321,9 @@ def search(request):
             Q(username__icontains=q) | Q(email__icontains=q) 
         ).all()
         group = Group.objects.filter(Q(name__icontains=q)).all()
-        serializer = UserSerializer(user, many=True)
+        serializer1 = UserSerializer(user, many=True)
         serializer2 = GroupSerializer(group, many=True)
-        return Response({'users': serializer.data, 'groups': serializer2.data})
+        return Response({'users': serializer1.data, 'groups': serializer2.data})
     else:
         return Response('Please enter a search query')
 
