@@ -159,6 +159,7 @@ class RegisterAPI(generics.GenericAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
+
 class LoginAPI(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
 
@@ -170,11 +171,14 @@ class LoginAPI(KnoxLoginView):
         return super(LoginAPI, self).post(request, format=None)
 
 # getting an item
+
+
 @api_view(['GET'])
 def get_profiles(request):
     profiles = Profile.objects.all()
     serializer = ProfileSerializer(profiles, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_posts(request):
@@ -189,6 +193,7 @@ def get_groups(request):
     serializer = GroupSerializer(groups, many=True)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 def get_comments(request):
     comments = Comment.objects.all()
@@ -196,6 +201,8 @@ def get_comments(request):
     return Response(serializer.data)
 
 # getting a single item
+
+
 @api_view(['GET'])
 def get_profile(request, pk):
     profile = Profile.objects.get(pk=pk)
@@ -224,6 +231,8 @@ def get_comment(request, pk):
     return Response(serializer.data)
 
 # deleting a single item
+
+
 @api_view(['DELETE'])
 def delete_profile(request, pk):
     profile = Profile.objects.get(pk=pk)
@@ -331,6 +340,13 @@ def create_comment(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+
+#Replying to a comment 
+# @api_view(['POST'])
+# def reply_comment_id(request):
+
+
+
 
 
 # Implementing search functionality
