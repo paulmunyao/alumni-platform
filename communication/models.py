@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = CloudinaryField('image')
@@ -13,10 +11,17 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Reply(models.Model):
+    reply = models.TextField(max_length=500, blank=True,default = 1)
+
+    def __str__(self):
+        return self.reply
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = CloudinaryField('image')
     message = models.TextField(max_length=500, blank=True)
+    reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -31,13 +36,6 @@ class Group(models.Model):
 
     def __str__(self):
         return self.name
-
-class Reply(models.Model):
-    reply = models.TextField(max_length=500, blank=True)
-
-    def __str__(self):
-        return self.reply
-
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
