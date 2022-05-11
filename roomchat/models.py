@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
+from cloudinary.models import CloudinaryField
 
 
 # Create your models here.
@@ -15,6 +16,7 @@ class Roomchat(models.Model):
      room = models.ForeignKey(Room,on_delete=models.CASCADE,blank=True,related_name='group',null=True)
      author=models.CharField(max_length=50)
      date = models.DateTimeField(default=datetime.now, blank=True)
+     image = CloudinaryField('image',null=True)
 
 
 
