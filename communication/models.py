@@ -20,7 +20,7 @@ class Reply(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = CloudinaryField('image',default = 1)
-    message = models.TextField(max_length=500, blank=True)
+    message = models.TextField(max_length=400, blank=True)
     reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
