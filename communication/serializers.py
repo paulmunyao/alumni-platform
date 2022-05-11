@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from communication.models import Profile, Post, Group, Comment
+from communication.models import Profile, Post, Group, Comment,Reply
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -54,3 +54,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             validated_data['username'], validated_data['email'], validated_data['password'])
 
         return user
+class ReplySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reply
+        fields = '__all__'

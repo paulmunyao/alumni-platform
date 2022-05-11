@@ -29,4 +29,5 @@ urlpatterns = [
     path('api/posts/new/', views.create_post, name="create_post"),
     path('api/groups/new/', views.create_group, name="create_group"),
     path('api/comments/new/', views.create_comment, name="create_comment"),  
+    path('api/comments/<int:pk>/reply/', views.get_group, name="get_group"),
 ]

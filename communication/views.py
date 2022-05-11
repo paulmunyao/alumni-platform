@@ -122,7 +122,7 @@ def getRoutes(request):
          'description': 'Update a comment'},
 
         # Endpoints for creating a single item
-        {'Endpoint': 'api/posts/<int:pk>/create/',
+        {'Endpoint': 'api/posts/create/',
          'method': 'POST',
          'body': 'PostSerializer',
          'description': 'Create a post'},
@@ -136,13 +136,20 @@ def getRoutes(request):
          'method': 'POST',
          'body': 'CommentSerializer',
          'description': 'Create a comment'},
+
+        # Endpoints for replying  a single on a comment
+        {'Endpoint': 'api/comments/<int:pk>/reply/',}
+        
     ]
 
     return Response(routes)
 
+@api_view(['POST'])
+def reply_to_comment(request):
+    reply = request.data['reply']
+    
+
 # getting an item
-
-
 @api_view(['GET'])
 def get_profiles(request):
     profiles = Profile.objects.all()
