@@ -6,6 +6,7 @@ from django.urls import reverse
 from .models import Room,Roomchat
 from django.core.mail import send_mail
 from django.conf import settings
+from roomchat.serializer import RoomchatSerializer,RoomSerializer
 
 
 # Create your views here.
@@ -50,11 +51,12 @@ def new_chat(request,id):
     print(current_user)
     if request.method == 'POST':
         chat_form = NewChatForm(request.POST,request.FILES)
+
         if chat_form.is_valid():
             # chat_form.instance.user = request.user
             chat_form.author = Room.objects.filter(id=id)
             chat_form.save(commit=False)
-            chat_form.author=current_user
+            chat_form.author# Create your views here.=current_user
             print(current_user)
             print(chat_form)
             chat_form.save()
@@ -100,4 +102,4 @@ def sendMail(request):
 
     })
 
-# Create your views here.
+
