@@ -317,11 +317,13 @@ def create_comment(request):
 def search(request):
     if request.data['q']:
         q = request.data['q']
-        results = User.objects.filter(
-            Q(username__icontains=q) | Q(email__icontains=q)
+        user = User.objects.filter(
+            Q(username__icontains=q) | Q(email__icontains=q) 
         ).all()
-        serializer = UserSerializer(results, many=True)
-        return Response(serializer.data)
+        group = Group.objects.filter(Q(name__icontains=q)).all()
+        serializer = UserSerializer(user, many=True)
+        serializer2 = GroupSerializer(group, many=True)
+        return Response({'users': serializer.data, 'groups': serializer2.data})
     else:
         return Response('Please enter a search query')
 
