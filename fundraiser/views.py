@@ -51,4 +51,4 @@ def fund_chat(request,id):
     return render (request,'chat.html',{"fund_form":fund_form})
 
 
-# Create your views here.
+
