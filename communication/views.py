@@ -31,7 +31,7 @@ def getRoutes(request):
 
         # Endpoint for searching items in the databases
         {'endpoint': 'api/search/',
-         'method': 'GET',
+         'method':'POST',
          'body': {'search': 'search'},
          'description': 'Search for items in the databases'},
 
