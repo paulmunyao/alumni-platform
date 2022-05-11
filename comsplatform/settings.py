@@ -44,6 +44,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +56,6 @@ INSTALLED_APPS = [
     'communication',
     'roomchat',
     'fundraiser',
-    'cloudinary',
     'rest_framework',
     'corsheaders',
 ]
@@ -190,3 +190,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'alumnimoringa@gmail.com'
+EMAIL_HOST_PASSWORD = 'moringaalumni01#'
+
+cloudinary.config( 
+  cloud_name = "dcvj5loxa", 
+  api_key = "634558548396362", 
+  api_secret = "lOCjmzdIJDbCfkAVafzPFtqQB8A" 
+)
