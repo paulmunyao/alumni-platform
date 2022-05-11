@@ -159,7 +159,6 @@ class RegisterAPI(generics.GenericAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
-
 class LoginAPI(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
 
@@ -177,7 +176,6 @@ def get_profiles(request):
     serializer = ProfileSerializer(profiles, many=True)
     return Response(serializer.data)
 
-
 @api_view(['GET'])
 def get_posts(request):
     posts = Post.objects.all()
@@ -191,7 +189,6 @@ def get_groups(request):
     serializer = GroupSerializer(groups, many=True)
     return Response(serializer.data)
 
-
 @api_view(['GET'])
 def get_comments(request):
     comments = Comment.objects.all()
@@ -199,8 +196,6 @@ def get_comments(request):
     return Response(serializer.data)
 
 # getting a single item
-
-
 @api_view(['GET'])
 def get_profile(request, pk):
     profile = Profile.objects.get(pk=pk)
@@ -229,8 +224,6 @@ def get_comment(request, pk):
     return Response(serializer.data)
 
 # deleting a single item
-
-
 @api_view(['DELETE'])
 def delete_profile(request, pk):
     profile = Profile.objects.get(pk=pk)
