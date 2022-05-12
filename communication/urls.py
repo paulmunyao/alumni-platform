@@ -27,6 +27,6 @@ urlpatterns = [
     path('api/groups/<int:pk>/edit/', views.update_group, name="update_group"),
     path('api/comments/<int:pk>/edit/', views.update_comment, name="update_comment"),
     path('api/posts/<int:user_id>/create/', views.create_post, name="create_post"),
-    path('api/groups/<int:pk>/create/', views.create_group, name="create_group"),
+    path('api/groups/<int:user_id>/create/', views.create_group, name="create_group"),
     path('api/comments/create/<int:user_id>/<int:post_id>/', views.create_comment, name="create_comment"),  
 ]

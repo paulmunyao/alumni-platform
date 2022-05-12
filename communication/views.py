@@ -326,7 +326,7 @@ def create_group(request, user_id):
     data = request.data
     serializer = GroupSerializer(data=data)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(user_id=user_id)
         return Response(serializer.data)
 
 

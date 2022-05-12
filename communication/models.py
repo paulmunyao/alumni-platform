@@ -23,6 +23,7 @@ class Post(models.Model):
 
 
 class Group(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE ,null=True)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True)
     members = models.ManyToManyField(User, related_name='members')
