@@ -11,17 +11,10 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-class Reply(models.Model):
-    reply = models.TextField(max_length=500, blank=True,default = 1)
-
-    def __str__(self):
-        return self.reply
-
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = CloudinaryField('image',null=True)
     message = models.TextField(max_length=400, blank=True)
-    reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -40,8 +33,7 @@ class Group(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
-    message = models.TextField(max_length=500, blank=True)
+    message = models.TextField(max_length=500)
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 

@@ -31,7 +31,7 @@ def getRoutes(request):
 
         # Endpoint for searching items in the databases
         {'endpoint': 'api/search/',
-         'method':'POST',
+         'method': 'POST',
          'body': {'search': 'search'},
          'description': 'Search for items in the databases'},
 
@@ -144,7 +144,7 @@ def getRoutes(request):
 
     return Response(routes)
 
-    # Registering the API
+    # Registering the API for registering a new user
 
 
 class RegisterAPI(generics.GenericAPIView):
@@ -159,6 +159,8 @@ class RegisterAPI(generics.GenericAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
+# Registering the API for logging in a user
+
 
 class LoginAPI(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
@@ -169,6 +171,10 @@ class LoginAPI(KnoxLoginView):
         user = serializer.validated_data['user']
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
+
+# Registering API for logging out a user
+# class LogoutAPI(APIView):
+
 
 # getting an item
 
@@ -307,16 +313,16 @@ def update_comment(request, pk):
 
 
 @api_view(['POST'])
-def create_post(request):
+def create_post(request, user_id):
     data = request.data
     serializer = PostSerializer(data=data)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(user_id=user_id)
         return Response(serializer.data)
 
 
 @api_view(['POST'])
-def create_group(request):
+def create_group(request, user_id):
     data = request.data
     serializer = GroupSerializer(data=data)
     if serializer.is_valid():
@@ -325,31 +331,14 @@ def create_group(request):
 
 
 @api_view(['POST'])
-def create_comment(request):
+def create_comment(request, user_id, post_id):
     data = request.data
     serializer = CommentSerializer(data=data)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(user_id=user_id,post_id=post_id)
         return Response(serializer.data)
 
-
-@api_view(['POST'])
-def create_comment(request):
-    data = request.data
-    serializer = CommentSerializer(data=data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-
-#Replying to a comment 
-# @api_view(['POST'])
-# def reply_comment_id(request):
-
-
-
-
-
-# Implementing search functionality
+# Implementing search functionality and filtering
 @api_view(['POST'])
 def search(request):
     if request.data['q']:
