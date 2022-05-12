@@ -132,6 +132,11 @@ def getRoutes(request):
          'body': 'GroupSerializer',
          'description': 'Create a group'},
 
+        {'Endpoint': 'api/posts/<int:pk>/create/',
+         'method': 'POST',
+         'body': 'GroupSerializer',
+         'description': 'Create a group'},
+
         {'Endpoint': 'api/comments/<int:pk>/create/',
          'method': 'POST',
          'body': 'CommentSerializer',
@@ -335,10 +340,12 @@ def create_comment(request, user_id, post_id):
     data = request.data
     serializer = CommentSerializer(data=data)
     if serializer.is_valid():
-        serializer.save(user_id=user_id,post_id=post_id)
+        serializer.save(user_id=user_id, post_id=post_id)
         return Response(serializer.data)
 
 # Implementing search functionality and filtering
+
+
 @api_view(['POST'])
 def search(request):
     if request.data['q']:
