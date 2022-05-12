@@ -141,10 +141,6 @@ def getRoutes(request):
          'method': 'POST',
          'body': 'CommentSerializer',
          'description': 'Create a comment'},
-
-        # Endpoints for replying  a single on a comment
-        {'Endpoint': 'api/comments/<int:pk>/reply/', }
-
     ]
 
     return Response(routes)
