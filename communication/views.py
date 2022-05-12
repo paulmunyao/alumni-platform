@@ -135,7 +135,7 @@ def getRoutes(request):
         {'Endpoint': 'api/posts/<int:pk>/create/',
          'method': 'POST',
          'body': 'GroupSerializer',
-         'description': 'Create a group'},
+         'description': 'Create a post'},
 
         {'Endpoint': 'api/comments/<int:pk>/create/',
          'method': 'POST',
