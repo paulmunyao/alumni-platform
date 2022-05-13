@@ -15,7 +15,7 @@ from .models import User, Profile, Group
 
 
 @api_view(['GET'])
-def getoutes(request):
+def getRoutes(request):
 
     routes = [
         # Endpoint for registering a new user
