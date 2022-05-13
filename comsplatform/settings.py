@@ -19,11 +19,10 @@ import django_heroku
 import dj_database_url
 from decouple import config, Csv
 
-cloudinary.config(
-    CLOUD_NAME=('cloud_name'),
-    API_KEY=('api_key'),
-    API_SECRET=('api_secret')
-)
+cloudinary.config(cloud_name=config('CLOUD_NAME'),
+                  api_key=config('API_KEY'),
+                  api_secret=config('API_SECRET'),
+                  )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -188,9 +187,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        'knox.auth.TokenAuthentication',
-    ]
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }

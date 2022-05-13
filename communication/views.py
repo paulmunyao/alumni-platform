@@ -2,29 +2,38 @@ from django.shortcuts import render
 from django.contrib.auth import login
 from rest_framework import generics, permissions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
-from knox.views import LoginView as KnoxLoginView 
+from knox.views import LoginView as KnoxLoginView
 from knox.models import AuthToken
 from .serializers import ProfileSerializer, PostSerializer, GroupSerializer, CommentSerializer, UserSerializer, RegisterSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Profile, Post, Group, Comment
-
+from django.db.models import Q
+from .models import User, Profile, Group
 
 # Create your views here.
+
+
 @api_view(['GET'])
 def getRoutes(request):
 
     routes = [
-        #Endpoint for registering a new user
-        {'endpoint':'api/signup/',
-         'method':'POST',
-         'body':{'username':'username', 'email':'email', 'password':'password'},
-         'description':'Register a new user'},
-        #Endpoint for logging in a user
-        {'endpoint':'api/login/',
-         'method':'POST',
-         'body':{'username':'username', 'password':'password'},
-         'description':'Login a user'},
+        # Endpoint for registering a new user
+        {'endpoint': 'api/signup/',
+         'method': 'POST',
+         'body': {'username': 'username', 'email': 'email', 'password': 'password'},
+         'description': 'Register a new user'},
+        # Endpoint for logging in a user
+        {'endpoint': 'api/login/',
+         'method': 'POST',
+         'body': {'username': 'username', 'password': 'password'},
+         'description': 'Login a user'},
+
+        # Endpoint for searching items in the databases
+        {'endpoint': 'api/search/',
+         'method': 'POST',
+         'body': {'search': 'search'},
+         'description': 'Search for items in the databases'},
 
 
         # creating endpoints for getting all the items
@@ -113,7 +122,7 @@ def getRoutes(request):
          'description': 'Update a comment'},
 
         # Endpoints for creating a single item
-        {'Endpoint': 'api/posts/<int:pk>/create/',
+        {'Endpoint': 'api/posts/create/',
          'method': 'POST',
          'body': 'PostSerializer',
          'description': 'Create a post'},
@@ -123,6 +132,11 @@ def getRoutes(request):
          'body': 'GroupSerializer',
          'description': 'Create a group'},
 
+        {'Endpoint': 'api/posts/<int:pk>/create/',
+         'method': 'POST',
+         'body': 'GroupSerializer',
+         'description': 'Create a post'},
+
         {'Endpoint': 'api/comments/<int:pk>/create/',
          'method': 'POST',
          'body': 'CommentSerializer',
@@ -130,6 +144,37 @@ def getRoutes(request):
     ]
 
     return Response(routes)
+
+    # Registering the API for registering a new user
+
+
+class RegisterAPI(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        profile = ProfileSerializer(user=user)
+        profile.save()
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
+
+# Registering the API for logging in a user
+
+
+class LoginAPI(KnoxLoginView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = AuthTokenSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        login(request, user)
+        return super(LoginAPI, self).post(request, format=None)
+
 
 # getting an item
 
@@ -268,61 +313,44 @@ def update_comment(request, pk):
 
 
 @api_view(['POST'])
-def create_post(request):
+def create_post(request, user_id):
     data = request.data
     serializer = PostSerializer(data=data)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(user_id=user_id)
         return Response(serializer.data)
 
 
 @api_view(['POST'])
-def create_group(request):
+def create_group(request, user_id):
     data = request.data
     serializer = GroupSerializer(data=data)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(user_id=user_id)
         return Response(serializer.data)
 
 
 @api_view(['POST'])
-def create_comment(request):
+def create_comment(request, user_id, post_id):
     data = request.data
     serializer = CommentSerializer(data=data)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(user_id=user_id, post_id=post_id)
         return Response(serializer.data)
+
+# Implementing search functionality and filtering
 
 
 @api_view(['POST'])
-def create_comment(request):
-    data = request.data
-    serializer = CommentSerializer(data=data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-
-
-# Registering the API
-class RegisterAPI(generics.GenericAPIView):
-    serializer_class = RegisterSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response({
-            "user": UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": AuthToken.objects.create(user)[1]
-        })
-
-
-class LoginAPI(KnoxLoginView):
-    permission_classes = (permissions.AllowAny,)
-
-    def post(self, request, format=None):
-        serializer = AuthTokenSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        login(request, user)
-        return super(LoginAPI,self).post(request, format=None)
+def search(request):
+    if request.data['q']:
+        q = request.data['q']
+        user = User.objects.filter(
+            Q(username__icontains=q) | Q(email__icontains=q)
+        ).all()
+        group = Group.objects.filter(Q(name__icontains=q)).all()
+        serializer1 = UserSerializer(user, many=True)
+        serializer2 = GroupSerializer(group, many=True)
+        return Response({'users': serializer1.data, 'groups': serializer2.data})
+    else:
+        return Response('Please enter a search query')
