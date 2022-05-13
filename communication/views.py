@@ -173,9 +173,6 @@ class LoginAPI(KnoxLoginView):
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
 
-# Registering API for logging out a user
-# class LogoutAPI(APIView):
-
 
 # getting an item
 

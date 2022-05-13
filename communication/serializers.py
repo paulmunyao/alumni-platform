@@ -12,7 +12,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['message']
+        fields = ['user','message']
 
 
 class GroupSerializer(serializers.ModelSerializer):
