@@ -66,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.staticfiles',  # required for serving swagger ui's css/js files
+   'drf_yasg',
 ]
 
 ROOT_URLCONF = 'comsplatform.urls'
