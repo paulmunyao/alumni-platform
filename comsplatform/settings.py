@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'comsplatform.wsgi.application'
 
 MODE = config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 if config('MODE') == "dev":
     DATABASES = {
         'default': {
