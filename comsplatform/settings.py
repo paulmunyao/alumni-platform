@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'knox',
-    'corsheaders', 
-   'drf_yasg',
+    'corsheaders',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
