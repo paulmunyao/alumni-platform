@@ -13,7 +13,7 @@ chardet==3.0.4
 charset-normalizer==2.1.0
 chrome-gnome-shell==0.0.0
 Click==7.0
-cloudinary==1.29.0
+cloudinary==1.31.0
 colorama==0.4.3
 command-not-found==0.3
 commitizen==2.37.0
