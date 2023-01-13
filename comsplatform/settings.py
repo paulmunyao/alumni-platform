@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from distutils.command.config import config
 import os
+import sys
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -96,24 +97,39 @@ WSGI_APPLICATION = 'comsplatform.wsgi.application'
 MODE = config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
-if config('MODE') == "dev":
+
+# if config('MODE') == "dev":
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': config('DB_NAME'),
+#             'USER': config('DB_USER'),
+#             'PASSWORD': config('DB_PASSWORD'),
+#             'HOST': config('DB_HOST'),
+#             'PORT': '',
+#         }
+
+#     }
+
+# else:
+#     DATABASES = {
+#         'default': dj_database_url.config(
+#             default=config('DATABASE_URL')
+#         )
+#     }
+
+if DEVELOPMENT_MODE is True:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': config('DB_NAME'),
-            'USER': config('DB_USER'),
-            'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST'),
-            'PORT': '',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
-
     }
-
-else:
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    if os.getenv("DATABASE_URL", None) is None:
+        raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL')
-        )
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
