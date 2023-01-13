@@ -19,7 +19,7 @@ command-not-found==0.3
 commitizen==2.37.0
 coreapi==2.3.3
 coreschema==0.0.4
-cryptography==2.8
+cryptography==39.0.0
 cupshelpers==1.0
 dbus-python==1.2.16
 decli==0.5.2
