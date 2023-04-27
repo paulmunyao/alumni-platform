@@ -1,4 +1,4 @@
-# ALumni-platform-backend
+# Alumni-platform-backend
 
 A web application based school project that allows all Moringa Alumni's to keep in touch with one another.For this part of the project it contains the backend
 logic which also has the endpoints for each and every API that is called on the front-end.
