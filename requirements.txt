@@ -78,7 +78,7 @@ prompt-toolkit==3.0.32
 pycairo==1.16.2
 pycodestyle==2.8.0
 pycups==1.9.73
-pydantic==1.10.2
+pydantic==1.10.8
 PyGObject==3.36.0
 pyinotify==0.9.6
 PyJWT==2.4.0
