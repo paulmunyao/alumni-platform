@@ -70,7 +70,7 @@ nodeenv==1.7.0
 oauthlib==3.2.2
 onboard==1.4.1
 packaging==21.3
-paramiko==2.6.0
+paramiko==3.2.0
 pexpect==4.6.0
 platformdirs==2.5.4
 pre-commit==2.20.0
