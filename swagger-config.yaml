@@ -1,0 +1,4 @@
+---
+url: "http://127.0.0.1:8000/swagger/?format=openapi"
+dom_id: "#swagger-ui"
+validatorUrl: "https://validator.swagger.io/validator"
