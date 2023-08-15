@@ -14,136 +14,136 @@ from .models import User, Profile, Group
 # Create your views here.
 
 
-@api_view(['GET'])
-def getRoutes(request):
+# @api_view(['GET'])
+# def getRoutes(request):
 
-    routes = [
-        # Endpoint for registering a new user
-        {'endpoint': 'api/signup/',
-         'method': 'POST',
-         'body': {'username': 'username', 'email': 'email', 'password': 'password'},
-         'description': 'Register a new user'},
-        # Endpoint for logging in a user
-        {'endpoint': 'api/login/',
-         'method': 'POST',
-         'body': {'username': 'username', 'password': 'password'},
-         'description': 'Login a user'},
+#     routes = [
+#         # Endpoint for registering a new user
+#         {'endpoint': 'api/signup/',
+#          'method': 'POST',
+#          'body': {'username': 'username', 'email': 'email', 'password': 'password'},
+#          'description': 'Register a new user'},
+#         # Endpoint for logging in a user
+#         {'endpoint': 'api/login/',
+#          'method': 'POST',
+#          'body': {'username': 'username', 'password': 'password'},
+#          'description': 'Login a user'},
 
-        # Endpoint for searching items in the databases
-        {'endpoint': 'api/search/',
-         'method': 'POST',
-         'body': {'search': 'search'},
-         'description': 'Search for items in the databases'},
+#         # Endpoint for searching items in the databases
+#         {'endpoint': 'api/search/',
+#          'method': 'POST',
+#          'body': {'search': 'search'},
+#          'description': 'Search for items in the databases'},
 
 
-        # creating endpoints for getting all the items
-        {'Endpoint': 'api/profiles/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get all profiles'},
+#         # creating endpoints for getting all the items
+#         {'Endpoint': 'api/profiles/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get all profiles'},
 
-        {'Endpoint': 'api/posts/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get all posts'},
+#         {'Endpoint': 'api/posts/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get all posts'},
 
-        {'Endpoint': 'api/groups/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get all groups'},
-        #    print('groups')
+#         {'Endpoint': 'api/groups/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get all groups'},
+#         #    print('groups')
 
-        {'Endpoint': 'api/comments/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get all comments'},
+#         {'Endpoint': 'api/comments/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get all comments'},
 
-        # Endpoints for getting a single item
-        {'Endpoint': 'api/profiles/<int:pk>/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get a profile'},
+#         # Endpoints for getting a single item
+#         {'Endpoint': 'api/profiles/<int:pk>/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get a profile'},
 
-        {'Endpoint': 'api/posts/<int:pk>/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get a post'},
+#         {'Endpoint': 'api/posts/<int:pk>/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get a post'},
 
-        {'Endpoint': 'api/groups/<int:pk>/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get a group'},
+#         {'Endpoint': 'api/groups/<int:pk>/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get a group'},
 
-        {'Endpoint': 'api/comments/<int:pk>/',
-         'method': 'GET',
-         'body': {'write_only': 'True'},
-         'description': 'Get a comment'},
+#         {'Endpoint': 'api/comments/<int:pk>/',
+#          'method': 'GET',
+#          'body': {'write_only': 'True'},
+#          'description': 'Get a comment'},
 
-        # Endpoints for deleting a single item
-        {'Endpoint': 'api/profiles/<int:pk>/delete/',
-         'method': 'DELETE',
-         'body': {'write_only': 'True'},
-         'description': 'Delete a profile'},
+#         # Endpoints for deleting a single item
+#         {'Endpoint': 'api/profiles/<int:pk>/delete/',
+#          'method': 'DELETE',
+#          'body': {'write_only': 'True'},
+#          'description': 'Delete a profile'},
 
-        {'Endpoint': 'api/posts/<int:pk>/delete/',
-         'method': 'DELETE',
-         'body': {'write_only': 'True'},
-         'description': 'Delete a post'},
+#         {'Endpoint': 'api/posts/<int:pk>/delete/',
+#          'method': 'DELETE',
+#          'body': {'write_only': 'True'},
+#          'description': 'Delete a post'},
 
-        {'Endpoint': 'api/groups/<int:pk>/delete/',
-         'method': 'DELETE',
-         'body': {'write_only': 'True'},
-         'description': 'Delete a group'},
+#         {'Endpoint': 'api/groups/<int:pk>/delete/',
+#          'method': 'DELETE',
+#          'body': {'write_only': 'True'},
+#          'description': 'Delete a group'},
 
-        {'Endpoint': 'api/comments/<int:pk>/delete/',
-         'method': 'DELETE',
-         'body': {'write_only': 'True'},
-         'description': 'Delete a comment'},
+#         {'Endpoint': 'api/comments/<int:pk>/delete/',
+#          'method': 'DELETE',
+#          'body': {'write_only': 'True'},
+#          'description': 'Delete a comment'},
 
-        # Endpoints for updating a single item
-        {'Endpoint': 'api/profiles/<int:pk>/update/',
-         'method': 'PUT',
-         'body': 'ProfileSerializer',
-         'description': 'Update a profile'},
+#         # Endpoints for updating a single item
+#         {'Endpoint': 'api/profiles/<int:pk>/update/',
+#          'method': 'PUT',
+#          'body': 'ProfileSerializer',
+#          'description': 'Update a profile'},
 
-        {'Endpoint': 'api/posts/<int:pk>/update/',
-         'method': 'PUT',
-         'body': 'PostSerializer',
-         'description': 'Update a post'},
+#         {'Endpoint': 'api/posts/<int:pk>/update/',
+#          'method': 'PUT',
+#          'body': 'PostSerializer',
+#          'description': 'Update a post'},
 
-        {'Endpoint': 'api/groups/<int:pk>/update/',
-         'method': 'PUT',
-         'body': 'GroupSerializer',
-         'description': 'Update a group'},
+#         {'Endpoint': 'api/groups/<int:pk>/update/',
+#          'method': 'PUT',
+#          'body': 'GroupSerializer',
+#          'description': 'Update a group'},
 
-        {'Endpoint': 'api/comments/<int:pk>/update/',
-         'method': 'PUT',
-         'body': 'CommentSerializer',
-         'description': 'Update a comment'},
+#         {'Endpoint': 'api/comments/<int:pk>/update/',
+#          'method': 'PUT',
+#          'body': 'CommentSerializer',
+#          'description': 'Update a comment'},
 
-        # Endpoints for creating a single item
-        {'Endpoint': 'api/posts/create/',
-         'method': 'POST',
-         'body': 'PostSerializer',
-         'description': 'Create a post'},
+#         # Endpoints for creating a single item
+#         {'Endpoint': 'api/posts/create/',
+#          'method': 'POST',
+#          'body': 'PostSerializer',
+#          'description': 'Create a post'},
 
-        {'Endpoint': 'api/groups/<int:pk>/create/',
-         'method': 'POST',
-         'body': 'GroupSerializer',
-         'description': 'Create a group'},
+#         {'Endpoint': 'api/groups/<int:pk>/create/',
+#          'method': 'POST',
+#          'body': 'GroupSerializer',
+#          'description': 'Create a group'},
 
-        {'Endpoint': 'api/posts/<int:pk>/create/',
-         'method': 'POST',
-         'body': 'GroupSerializer',
-         'description': 'Create a post'},
+#         {'Endpoint': 'api/posts/<int:pk>/create/',
+#          'method': 'POST',
+#          'body': 'GroupSerializer',
+#          'description': 'Create a post'},
 
-        {'Endpoint': 'api/comments/<int:pk>/create/',
-         'method': 'POST',
-         'body': 'CommentSerializer',
-         'description': 'Create a comment'},
-    ]
+#         {'Endpoint': 'api/comments/<int:pk>/create/',
+#          'method': 'POST',
+#          'body': 'CommentSerializer',
+#          'description': 'Create a comment'},
+#     ]
 
-    return Response(routes)
+#     return Response(routes)
 
     # Registering the API for registering a new user
 

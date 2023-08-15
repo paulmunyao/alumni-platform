@@ -15,7 +15,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
-# import django_heroku
 import dj_database_url
 from decouple import config, Csv
 
@@ -188,4 +187,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}
+
+SWAGGER_SETTINGS = {
+    'VALIDATOR_URL': 'http://localhost:8000',
 }
