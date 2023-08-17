@@ -1,0 +1,368 @@
+openapi: 3.0.3
+info:
+  title: Alumni Platform
+  version: 1.0.0
+  description:
+    A web application that allows Alumni's to keep in touch with one another.<br/>For
+    this part of the project it contains the backend logic which also has the endpoints
+    for each and every API that is called on the front-end.
+paths:
+  /api/comments/:
+    get:
+      operationId: comments_retrieve
+      tags:
+        - comments
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/comments/{id}/:
+    get:
+      operationId: comments_retrieve_2
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - comments
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/comments/{id}/delete/:
+    delete:
+      operationId: comments_delete_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - comments
+      security:
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/comments/{id}/edit/:
+    put:
+      operationId: comments_edit_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - comments
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/comments/create/{user_id}/{post_id}/:
+    post:
+      operationId: comments_create_create
+      parameters:
+        - in: path
+          name: post_id
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - comments
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/groups/:
+    get:
+      operationId: groups_retrieve
+      tags:
+        - groups
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/groups/{id}/:
+    get:
+      operationId: groups_retrieve_2
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - groups
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/groups/{id}/delete/:
+    delete:
+      operationId: groups_delete_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - groups
+      security:
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/groups/{id}/edit/:
+    put:
+      operationId: groups_edit_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - groups
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/groups/{user_id}/create/:
+    post:
+      operationId: groups_create_create
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - groups
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/login/:
+    post:
+      operationId: login_create
+      tags:
+        - login
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/posts/:
+    get:
+      operationId: posts_retrieve
+      tags:
+        - posts
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/posts/{id}/:
+    get:
+      operationId: posts_retrieve_2
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - posts
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/posts/{id}/delete/:
+    delete:
+      operationId: posts_delete_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - posts
+      security:
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/posts/{id}/edit/:
+    put:
+      operationId: posts_edit_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - posts
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/posts/{user_id}/create/:
+    post:
+      operationId: posts_create_create
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - posts
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/profiles/:
+    get:
+      operationId: profiles_retrieve
+      tags:
+        - profiles
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/profiles/{id}/:
+    get:
+      operationId: profiles_retrieve_2
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - profiles
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/profiles/{id}/delete/:
+    delete:
+      operationId: profiles_delete_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - profiles
+      security:
+        - {}
+      responses:
+        "204":
+          description: No response body
+  /api/profiles/{id}/edit/:
+    put:
+      operationId: profiles_edit_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - profiles
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/search/:
+    post:
+      operationId: search_create
+      tags:
+        - search
+      security:
+        - {}
+      responses:
+        "200":
+          description: No response body
+  /api/signup/:
+    post:
+      operationId: signup_create
+      tags:
+        - signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Register"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/Register"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/Register"
+        required: true
+      security:
+        - {}
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Register"
+          description: ""
+components:
+  schemas:
+    Register:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description:
+            Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+      required:
+        - id
+        - password
+        - username
