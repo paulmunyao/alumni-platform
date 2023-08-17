@@ -1,7 +1,6 @@
 version: 2.1
 
 jobs:
-
   test-and-lint:
     docker:
       - image: cimg/python:3.8.10
@@ -10,7 +9,6 @@ jobs:
       - run:
           name: install dependencies
           command: pip install -r requirements.txt
-      
 
 workflows:
   build-and-test-workflow:
